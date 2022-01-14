@@ -1,8 +1,14 @@
 package com.tacos.tacocloud.dto;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -10,6 +16,9 @@ import lombok.Data;
 
 @Data
 public class Order {
+
+    @JsonIgnore
+    private Long id;
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -34,5 +43,18 @@ public class Order {
 
     @Digits(integer = 3, fraction = 0, message = "Invalid CVV")
     private String ccCVV;
+
+    private Date placedAt;
+
+    @JsonIgnore
+    private List<Taco> tacos;
+
+    public void addDesign(Taco taco) {
+        
+        if(tacos == null) {
+            tacos = new ArrayList<>();
+        }
+        tacos.add(taco);
+    }
 
 }
