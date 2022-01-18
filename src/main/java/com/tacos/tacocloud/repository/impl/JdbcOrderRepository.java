@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tacos.tacocloud.dto.Order;
-import com.tacos.tacocloud.dto.Taco;
+import com.tacos.tacocloud.entity.Order;
+import com.tacos.tacocloud.entity.Taco;
 import com.tacos.tacocloud.repository.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.tacos.tacocloud.dto;
+package com.tacos.tacocloud.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,7 +2,7 @@ package com.tacos.tacocloud.controller;
 
 import javax.validation.Valid;
 
-import com.tacos.tacocloud.dto.Order;
+import com.tacos.tacocloud.entity.Order;
 import com.tacos.tacocloud.repository.OrderRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

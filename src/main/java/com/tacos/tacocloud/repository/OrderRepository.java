@@ -1,6 +1,6 @@
 package com.tacos.tacocloud.repository;
 
-import com.tacos.tacocloud.dto.Order;
+import com.tacos.tacocloud.entity.Order;
 
 public interface OrderRepository {
     

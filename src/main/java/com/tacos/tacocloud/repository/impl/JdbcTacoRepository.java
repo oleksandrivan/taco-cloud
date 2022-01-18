@@ -5,7 +5,7 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.Date;
 
-import com.tacos.tacocloud.dto.Taco;
+import com.tacos.tacocloud.entity.Taco;
 import com.tacos.tacocloud.repository.TacoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

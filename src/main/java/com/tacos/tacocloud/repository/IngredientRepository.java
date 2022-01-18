@@ -1,6 +1,6 @@
 package com.tacos.tacocloud.repository;
 
-import com.tacos.tacocloud.dto.Ingredient;
+import com.tacos.tacocloud.entity.Ingredient;
 
 public interface IngredientRepository {
 

@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import com.tacos.tacocloud.dto.Ingredient;
-import com.tacos.tacocloud.dto.Ingredient.Type;
-import com.tacos.tacocloud.dto.Order;
-import com.tacos.tacocloud.dto.Taco;
+import com.tacos.tacocloud.entity.Ingredient;
+import com.tacos.tacocloud.entity.Order;
+import com.tacos.tacocloud.entity.Taco;
+import com.tacos.tacocloud.entity.Ingredient.Type;
 import com.tacos.tacocloud.repository.IngredientRepository;
 import com.tacos.tacocloud.repository.TacoRepository;
 

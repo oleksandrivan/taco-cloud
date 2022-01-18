@@ -3,7 +3,7 @@ package com.tacos.tacocloud.repository.impl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.tacos.tacocloud.dto.Ingredient;
+import com.tacos.tacocloud.entity.Ingredient;
 import com.tacos.tacocloud.repository.IngredientRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
