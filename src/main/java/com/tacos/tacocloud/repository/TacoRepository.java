@@ -2,8 +2,10 @@ package com.tacos.tacocloud.repository;
 
 import com.tacos.tacocloud.entity.Taco;
 
-public interface TacoRepository {
-    
-    Taco save(Taco taco);
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TacoRepository extends CrudRepository<Taco, Long> {
 
 }

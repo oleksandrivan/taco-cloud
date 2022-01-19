@@ -2,8 +2,10 @@ package com.tacos.tacocloud.repository;
 
 import com.tacos.tacocloud.entity.Order;
 
-public interface OrderRepository {
-    
-    Order save(Order order);
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface OrderRepository extends CrudRepository<Order, Long> {
 
 }
