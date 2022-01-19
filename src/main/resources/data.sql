@@ -1,18 +1,3 @@
-DELETE FROM
-    Taco_Order_Tacos;
-
-DELETE FROM
-    Taco_Ingredients;
-
-DELETE FROM
-    Taco;
-
-DELETE FROM
-    Taco_Order;
-
-DELETE FROM
-    Ingredient;
-
 INSERT INTO
     Ingredient (id, name, TYPE)
 VALUES
