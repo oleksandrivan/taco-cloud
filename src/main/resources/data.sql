@@ -47,3 +47,8 @@ INSERT INTO
     Ingredient (id, name, TYPE)
 VALUES
     ('SRCR', 'Sour Cream', 'SAUCE');
+
+INSERT INTO
+    TACO_USER (id,city, fullname, password, phone_number, state, street, username, zip)
+VALUES
+    (1,'LG', 'Buzzy', '61011e356b3717e8eb0eb5a2e889967319e75e7042d5e87482f63c5735e74405efca150c29684591', '123123123', 'MD', 'Some street', 'buzz', '28000')
