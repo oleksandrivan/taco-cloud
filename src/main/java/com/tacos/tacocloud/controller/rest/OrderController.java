@@ -19,8 +19,13 @@ public class OrderController {
         this.orderMessagingService = orderMessagingService;
     }
 
-    @PostMapping(path = "/dummy")
+    @PostMapping(path = "/dummyKafka")
     public void createDummyOrder() {
+        Order dummy = getDummyOrder();
+        orderMessagingService.sendOrder(dummy);
+    }
+
+    private Order getDummyOrder() {
         Order dummy = new Order();
         dummy.setId(1L);
         dummy.setName("Olik");
@@ -32,7 +37,7 @@ public class OrderController {
         dummy.setCcExpiration("12/12");
         dummy.setCcCVV("123");
         dummy.setPlacedAt(new Date());
-        orderMessagingService.sendOrder(dummy);
+        return dummy;
     }
 
 }

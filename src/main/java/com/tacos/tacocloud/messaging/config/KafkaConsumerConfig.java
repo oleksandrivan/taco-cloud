@@ -1,4 +1,4 @@
-package com.tacos.tacocloud.config;
+package com.tacos.tacocloud.messaging.config;
 
 import com.tacos.tacocloud.entity.Order;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

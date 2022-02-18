@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class KafkaMessagingService implements OrderMessagingService {
+public class KafkaOrderMessagingService implements OrderMessagingService {
 
     @Value(value = "${kafka.orderTopic}")
     private String orderTopic;
@@ -17,7 +17,7 @@ public class KafkaMessagingService implements OrderMessagingService {
     private final KafkaTemplate<String, Order> kafkaTemplate;
 
     @Autowired
-    public KafkaMessagingService(KafkaTemplate<String, Order> kafkaTemplate) {
+    public KafkaOrderMessagingService(KafkaTemplate<String, Order> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 

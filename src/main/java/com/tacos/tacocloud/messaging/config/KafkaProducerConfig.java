@@ -1,7 +1,6 @@
-package com.tacos.tacocloud.config;
+package com.tacos.tacocloud.messaging.config;
 
 import com.tacos.tacocloud.entity.Order;
-import com.tacos.tacocloud.messaging.KafkaMessagingService;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
