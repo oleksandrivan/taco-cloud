@@ -27,7 +27,6 @@ public class OrderController {
 
     private Order getDummyOrder() {
         Order dummy = new Order();
-        dummy.setId(1L);
         dummy.setName("Olik");
         dummy.setStreet("Fake st.");
         dummy.setCity("Springfield");

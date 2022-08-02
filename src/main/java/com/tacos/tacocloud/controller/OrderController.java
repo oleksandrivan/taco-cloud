@@ -1,6 +1,7 @@
 package com.tacos.tacocloud.controller;
 
 import com.tacos.tacocloud.entity.TacoUser;
+import com.tacos.tacocloud.udt.UserUDT;
 import javax.validation.Valid;
 
 import com.tacos.tacocloud.entity.Order;
@@ -44,7 +45,7 @@ public class OrderController {
             errors.getAllErrors().forEach(error -> log.error("Failed validation with a {}", error.getDefaultMessage()));
             return "orderForm";
         }
-        order.setUser(user);
+        order.setUser(new UserUDT(user.getUsername(), user.getFullname(), user.getPhoneNumber()));
         log.info("Order submitted: " + order);
         orderRepository.save(order);
         sessionStatus.setComplete();

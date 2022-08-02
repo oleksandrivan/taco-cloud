@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
 
 @Slf4j
 @Controller
@@ -55,7 +56,7 @@ public class DesignTacoController {
 
         List<Ingredient> ingredients = new ArrayList<>();
 
-        ingredientRepository.findAll().forEach(ingredient -> ingredients.add(ingredient));
+        ingredientRepository.findAll().subscribe(ingredients::add);
 
         Type[] types = Ingredient.Type.values();
 
@@ -75,8 +76,7 @@ public class DesignTacoController {
         }
         
         log.info("Processing design " + design);
-        Taco saved = tacoRepository.save(design);
-        order.addDesign(saved);
+        tacoRepository.save(design).subscribe(order::addDesign);
 
         return "redirect:/orders/current";
     }

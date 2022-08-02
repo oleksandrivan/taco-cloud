@@ -2,14 +2,19 @@ package com.tacos.tacocloud.controller.rest;
 
 import com.tacos.tacocloud.entity.Taco;
 import com.tacos.tacocloud.repository.TacoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.Collection;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RestController(value = "RestDesignTacoController")
 @RequestMapping(path = "/api/design", produces = "application/json")
@@ -24,14 +29,13 @@ public class DesignTacoController {
 
     @GetMapping(path = "/recent")
     @ResponseBody
-    public Collection<Taco> recentTacos() {
-        PageRequest pageRequest = PageRequest.of(0, 12, Sort.by("createdAt").descending());
-        return tacoRepository.findAll(pageRequest).getContent();
+    public Flux<Taco> recentTacos() {
+        return tacoRepository.findAll().take(12);
     }
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Taco postTaco(@RequestBody @Valid Taco taco) {
+    public Mono<Taco> postTaco(@RequestBody @Valid Taco taco) {
         return tacoRepository.save(taco);
     }
 

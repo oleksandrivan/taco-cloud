@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
@@ -19,9 +20,9 @@ public class UserDetailsService implements org.springframework.security.core.use
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        TacoUser user = userRepository.findByUsername(username);
+        Mono<TacoUser> user = userRepository.findByUsername(username);
         if (user != null) {
-            return user;
+            return user.block();
         }
         throw new UsernameNotFoundException(String.format("User %s not found", username));
     }

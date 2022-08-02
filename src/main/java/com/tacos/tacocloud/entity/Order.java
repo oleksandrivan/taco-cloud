@@ -1,41 +1,32 @@
 package com.tacos.tacocloud.entity;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+import com.tacos.tacocloud.udt.TacoUDT;
+import com.tacos.tacocloud.udt.UserUDT;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import java.util.UUID;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.CreditCardNumber;
-
-import lombok.Data;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "Taco_Order")
+@Table("tacoorders")
 public class Order implements Serializable{
 
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @PrimaryKey
+    private UUID id = Uuids.timeBased();
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -63,19 +54,14 @@ public class Order implements Serializable{
 
     private Date placedAt;
 
-    @ManyToMany(targetEntity = Taco.class)
-    private List<Taco> tacos = new ArrayList<>();
+    @Column("tacos")
+    private List<TacoUDT> tacos = new ArrayList<>();
 
-    @ManyToOne(targetEntity = TacoUser.class)
-    private TacoUser user;
+    @Column("user")
+    private UserUDT user;
 
     public void addDesign(Taco taco) {
-        tacos.add(taco);
-    }
-
-    @PrePersist
-    void placedAt() {
-        this.placedAt = new Date();
+        tacos.add(new TacoUDT(taco.getTacoName(), taco.getIngredients()));
     }
 
 }

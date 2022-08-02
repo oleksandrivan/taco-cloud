@@ -1,11 +1,8 @@
 package com.tacos.tacocloud.repository;
 
 import com.tacos.tacocloud.entity.Ingredient;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface IngredientRepository extends CrudRepository<Ingredient, String> {
+public interface IngredientRepository extends ReactiveCrudRepository<Ingredient, String> {
 
 }
