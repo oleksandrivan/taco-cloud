@@ -25,16 +25,18 @@ public class ApplicationStartup implements ApplicationListener<ApplicationReadyE
   public void onApplicationEvent(final ApplicationReadyEvent event) {
     ingredientRepository.deleteAll();
 
-    ingredientRepository.save(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP)).block();
-    ingredientRepository.save(new Ingredient("COTO", "Corn Tortilla", Type.WRAP)).block();
-    ingredientRepository.save(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN)).block();
-    ingredientRepository.save(new Ingredient("CARN", "Carnitas", Type.PROTEIN)).block();
-    ingredientRepository.save(new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES)).block();
-    ingredientRepository.save(new Ingredient("LETC", "Lettuce", Type.VEGGIES)).block();
-    ingredientRepository.save(new Ingredient("CHED", "Cheddar", Type.CHEESE)).block();
-    ingredientRepository.save(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE)).block();
-    ingredientRepository.save(new Ingredient("SLSA", "Salsa", Type.SAUCE)).block();
-    ingredientRepository.save(new Ingredient("SRCR", "Sour Cream", Type.SAUCE)).block();
+    ingredientRepository.saveAll(Flux.just(
+        new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
+        new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
+        new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
+        new Ingredient("CARN", "Carnitas", Type.PROTEIN),
+        new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
+        new Ingredient("LETC", "Lettuce", Type.VEGGIES),
+        new Ingredient("CHED", "Cheddar", Type.CHEESE),
+        new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
+        new Ingredient("SLSA", "Salsa", Type.SAUCE),
+        new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
+    )).subscribe();
     log.info("Application ready :)");
   }
 }
